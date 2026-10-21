@@ -1,4 +1,4 @@
-# Gerenciador Familiar
+# Gerenciador Financeiro
 
 Sistema web de **finanças pessoais e familiares**: contas individuais e conjuntas, transações
 (inclusive recorrentes e parceladas), categorias, metas, notificações e relatórios em PDF e Excel.
