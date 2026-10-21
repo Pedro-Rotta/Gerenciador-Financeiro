@@ -1,0 +1,12 @@
+$kind: http-request
+name: Login
+url: "{{baseUrl}}/api/Auth/login"
+method: POST
+body:
+  type: json
+  content: "{\r\n  \"nomeDeUsuario\": \"pedroar\",\r\n  \"senha\": \"123456\"\r\n}"
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 200) {\r\n  pm.collectionVariables.set('membroId', r.membroId);\r\n  console.log('Login feito: o cookie de sessão fica com o Postman. membroId salvo!');\r\n} else {\r\n  console.log('Falha no login:', pm.response.text());\r\n}"
+    language: text/javascript
+order: 2

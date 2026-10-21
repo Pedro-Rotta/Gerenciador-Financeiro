@@ -1,0 +1,12 @@
+$kind: http-request
+name: Criar Membro
+url: "{{baseUrl}}/api/Membro"
+method: POST
+body:
+  type: json
+  content: "{\r\n  \"nome\": \"Pedro\",\r\n  \"nomeDeUsuario\": \"pedroar\",\r\n  \"email\": \"pedroar@email.com\",\r\n  \"senha\": \"123456\"\r\n}"
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 201) {\r\n  pm.collectionVariables.set('membroId', r.id);\r\n  console.log('membroId salvo:', r.id);\r\n} else {\r\n  console.log('Erro criar membro:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 1

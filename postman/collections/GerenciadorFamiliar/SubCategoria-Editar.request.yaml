@@ -1,0 +1,12 @@
+$kind: http-request
+name: Editar SubCategoria
+url: "{{baseUrl}}/api/SubCategoria/{{subCategoriaId}}"
+method: PUT
+body:
+  type: json
+  content: "{\r\n  \"nome\": \"Pecas Editada\"\r\n}"
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 200) {\r\n  console.log('SubCategoria editada com sucesso');\r\n} else {\r\n  console.log('Erro editar subcategoria:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 130

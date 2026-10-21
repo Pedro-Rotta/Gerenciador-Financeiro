@@ -1,0 +1,12 @@
+$kind: http-request
+name: Criar Conta
+url: "{{baseUrl}}/api/Conta"
+method: POST
+body:
+  type: json
+  content: "{\r\n  \"nome\": \"Conta Corrente\"\r\n}"
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 201) {\r\n  pm.collectionVariables.set('contaId', r.id);\r\n  console.log('contaId salvo:', r.id);\r\n} else {\r\n  console.log('Erro criar conta:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 10

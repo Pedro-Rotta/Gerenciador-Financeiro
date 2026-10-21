@@ -1,0 +1,9 @@
+$kind: http-request
+name: Relatorio Gastos
+url: "{{baseUrl}}/api/Relatorio/gastos?dataInicio=2026-01-01&dataFim=2026-12-31"
+method: GET
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 200) {\r\n  console.log('Relatorio obtido com sucesso');\r\n  console.log(JSON.stringify(r, null, 2));\r\n} else {\r\n  console.log('Erro relatorio:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 400

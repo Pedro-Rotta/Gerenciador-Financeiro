@@ -1,0 +1,12 @@
+$kind: http-request
+name: Criar Meta
+url: "{{baseUrl}}/api/Meta"
+method: POST
+body:
+  type: json
+  content: "{\r\n  \"nome\": \"Rtx 5050\",\r\n  \"valorAlvo\": 1500.00,\r\n  \"prazo\": \"2026-12-31\"\r\n}"
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 201) {\r\n  pm.collectionVariables.set('metaId', r.id);\r\n  console.log('metaId salvo:', r.id);\r\n} else {\r\n  console.log('Erro criar meta:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 50

@@ -1,0 +1,5 @@
+name: GerenciadorFinanceiro
+values:
+  - key: baseUrl
+    value: 'http://localhost:5237'
+color: 120

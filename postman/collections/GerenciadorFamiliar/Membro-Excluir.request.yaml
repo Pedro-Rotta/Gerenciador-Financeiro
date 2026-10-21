@@ -1,0 +1,9 @@
+$kind: http-request
+name: Excluir Membro
+url: "{{baseUrl}}/api/Membro"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 200) {\r\n  console.log('Membro excluido com sucesso');\r\n} else {\r\n  console.log('Erro excluir membro:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 270

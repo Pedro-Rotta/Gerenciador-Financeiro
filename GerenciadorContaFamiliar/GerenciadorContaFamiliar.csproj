@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>0f265c64-571e-4a63-933f-53b752da7246</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="GerenciadorContaFamiliar.Domain\**" />
+    <Compile Remove="GerenciadorContaFamiliar.Infrastructure\**" />
+    <Compile Remove="GerenciadorContaFamiliar.Application\**" />
+    <EmbeddedResource Remove="GerenciadorContaFamiliar.Domain\**" />
+    <EmbeddedResource Remove="GerenciadorContaFamiliar.Infrastructure\**" />
+    <EmbeddedResource Remove="GerenciadorContaFamiliar.Application\**" />
+    <None Remove="GerenciadorContaFamiliar.Domain\**" />
+    <None Remove="GerenciadorContaFamiliar.Infrastructure\**" />
+    <None Remove="GerenciadorContaFamiliar.Application\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="GerenciadorContaFamiliar.Application\GerenciadorContaFamiliar.Application.csproj" />
+    <ProjectReference Include="GerenciadorContaFamiliar.Infrastructure\GerenciadorContaFamiliar.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.29" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="QuestPDF" Version="2026.9.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <!-- Fonte de reserva dos PDFs (símbolos que a Lato não tem); licença livre em Fonts/DejaVuSans-LICENSE.txt -->
+  <ItemGroup>
+    <EmbeddedResource Include="Fonts\DejaVuSans.ttf" />
+  </ItemGroup>
+
+</Project>

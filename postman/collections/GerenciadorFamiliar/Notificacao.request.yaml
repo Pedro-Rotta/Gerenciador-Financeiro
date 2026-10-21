@@ -1,0 +1,12 @@
+$kind: http-request
+name: Criar Notificacao
+url: "{{baseUrl}}/api/Notificacao"
+method: POST
+body:
+  type: json
+  content: "{\r\n  \"mensagem\": \"Sua meta foi atingida!\"\r\n}"
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 201) {\r\n  pm.collectionVariables.set('notificacaoId', r.id);\r\n  console.log('notificacaoId salvo:', r.id);\r\n} else {\r\n  console.log('Erro criar notificacao:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 70

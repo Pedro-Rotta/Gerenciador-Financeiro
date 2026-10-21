@@ -1,0 +1,9 @@
+$kind: http-request
+name: Excluir Transacao
+url: "{{baseUrl}}/api/Transacao/{{transacaoId}}"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 200) {\r\n  console.log('Transacao excluida com sucesso');\r\n} else {\r\n  console.log('Erro excluir transacao:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 200

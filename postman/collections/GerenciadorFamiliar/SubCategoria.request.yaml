@@ -1,0 +1,12 @@
+$kind: http-request
+name: Criar SubCategoria
+url: "{{baseUrl}}/api/SubCategoria"
+method: POST
+body:
+  type: json
+  content: "{\r\n  \"nome\": \"Pecas\",\r\n  \"contaId\": {{contaId}},\r\n  \"contaConjuntaId\": null\r\n}"
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 201) {\r\n  pm.collectionVariables.set('subCategoriaId', r.id);\r\n  console.log('subCategoriaId salvo:', r.id);\r\n} else {\r\n  console.log('Erro criar subcategoria:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 40

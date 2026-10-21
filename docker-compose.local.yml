@@ -1,0 +1,43 @@
+# Ensaio local da imagem de produção: app + PostgreSQL descartável (não usa o PostgreSQL do Windows).
+# Uso: copiar .env.exemplo para .env, preencher e rodar
+#   docker compose -f docker-compose.local.yml up --build -d
+# Apagar tudo (inclusive o banco do ensaio): docker compose -f docker-compose.local.yml down -v
+services:
+  banco:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: GerenciadorFamiliar
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${SENHA_BANCO_LOCAL}
+    volumes:
+      - dados-banco:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d GerenciadorFamiliar"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build: .
+    depends_on:
+      banco:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${AMBIENTE:-Production}
+      ConnectionStrings__DefaultConnection: "Host=banco;Port=5432;Database=GerenciadorFamiliar;Username=postgres;Password=${SENHA_BANCO_LOCAL}"
+      JwtSettings__SecretKey: ${JWT_LOCAL}
+      # E-mail de mentira: no ensaio o envio não é testado (só no servidor, pela Brevo)
+      Email__Host: smtp.invalido.local
+      Email__Porta: "2525"
+      Email__Usuario: ensaio
+      Email__Senha: ensaio
+      Email__Remetente: ensaio@invalido.local
+      Banco__AplicarMigracoes: "true"
+      ProxyReverso__Ativo: ${PROXY_REVERSO:-false}
+      ProxyReverso__Saltos: ${PROXY_SALTOS:-1}
+      ProxyReverso__Diagnostico: ${PROXY_DIAGNOSTICO:-false}
+
+volumes:
+  dados-banco:

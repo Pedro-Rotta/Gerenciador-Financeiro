@@ -1,0 +1,12 @@
+$kind: http-request
+name: Criar Categoria
+url: "{{baseUrl}}/api/Categoria"
+method: POST
+body:
+  type: json
+  content: "{\r\n  \"nome\": \"Carro\",\r\n  \"tipo\": 1,\r\n  \"necessario\": true,\r\n  \"icone\": null,\r\n  \"contaId\": {{contaId}},\r\n  \"contaConjuntaId\": null\r\n}"
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 201) {\r\n  pm.collectionVariables.set('categoriaId', r.id);\r\n  console.log('categoriaId salvo:', r.id);\r\n} else {\r\n  console.log('Erro criar categoria:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 30

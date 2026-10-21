@@ -1,0 +1,12 @@
+$kind: http-request
+name: Criar Transacao
+url: "{{baseUrl}}/api/Transacao"
+method: POST
+body:
+  type: json
+  content: "{\r\n  \"valor\": 89.90,\r\n  \"descricao\": \"Supermercado\",\r\n  \"dataTransacao\": \"2026-08-18\",\r\n  \"tipo\": 1,\r\n  \"classificacao\": 1,\r\n  \"recorrente\": false,\r\n  \"periodicidade\": null,\r\n  \"status\": 1,\r\n  \"categoriaId\": {{categoriaId}},\r\n  \"contaId\": {{contaId}},\r\n  \"contaConjuntaId\": null\r\n}"
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 201) {\r\n  pm.collectionVariables.set('transacaoId', r.id);\r\n  console.log('transacaoId salvo:', r.id);\r\n} else {\r\n  console.log('Erro criar transacao:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 60

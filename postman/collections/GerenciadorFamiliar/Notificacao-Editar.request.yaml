@@ -1,0 +1,12 @@
+$kind: http-request
+name: Editar Notificacao
+url: "{{baseUrl}}/api/Notificacao/{{notificacaoId}}"
+method: PUT
+body:
+  type: json
+  content: "{\r\n  \"mensagem\": \"Notificacao atualizada\",\r\n  \"lida\": true\r\n}"
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 200) {\r\n  console.log('Notificacao editada com sucesso');\r\n} else {\r\n  console.log('Erro editar notificacao:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 160

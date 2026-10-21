@@ -1,0 +1,57 @@
+# ============================================
+# .NET build artifacts
+# ============================================
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]uild/
+*.user
+*.suo
+*.userprefs
+
+# ============================================
+# Visual Studio / IDE
+# ============================================
+.vs/
+.vscode/
+.idea/
+*.csproj.user
+*.sln.docstates
+
+# ============================================
+# Testes / Cobertura
+# ============================================
+*.coverage
+*.coveragexml
+coverage/
+*.trx
+TestResults/
+
+# ============================================
+# Arquivos de log e temporários
+# ============================================
+*.log
+*.tmp
+*.temp
+.DS_Store
+
+# ============================================
+# Node (frontend) - o frontend/ tem seu proprio .gitignore
+# ============================================
+node_modules/
+
+# ============================================
+# NOTA: appsettings.json e outros .json de configuracao
+# continuam rastreados por decisao do usuario.
+# ============================================
+# Backups locais do banco (dados reais: nunca versionar)
+backups/
+
+# Ensaio local do Docker (valores descartáveis, nunca versionar)
+.env
+
+# Telas compiladas que o Dockerfile coloca na API
+GerenciadorContaFamiliar/wwwroot/

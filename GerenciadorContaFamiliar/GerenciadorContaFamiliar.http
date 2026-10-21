@@ -1,0 +1,6 @@
+@GerenciadorContaFamiliar_HostAddress = http://localhost:5237
+
+GET {{GerenciadorContaFamiliar_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

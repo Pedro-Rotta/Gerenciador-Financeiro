@@ -1,0 +1,9 @@
+$kind: http-request
+name: Excluir Conta
+url: "{{baseUrl}}/api/Conta/{{contaId}}"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: "const r = pm.response.json();\r\nif (pm.response.code === 200) {\r\n  console.log('Conta excluida com sucesso');\r\n} else {\r\n  console.log('Erro excluir conta:', pm.response.status, JSON.stringify(r));\r\n}"
+    language: text/javascript
+order: 260
